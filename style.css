@@ -1,9 +1,325 @@
-/* 故事续写扩展样式 */
+/* 故事续写扩展样式 - 彩云小梦风格 */
 
 .story-continuation-settings {
     margin: 10px 0;
 }
 
 .story-continuation-settings .inline-drawer-content {
-    padding: 10px;
+    padding: 12px;
+}
+
+/* 输入区域 */
+.sc-section {
+    margin-bottom: 14px;
+}
+
+.sc-label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: #aaa;
+    font-weight: 500;
+}
+
+.sc-textarea {
+    width: 95% !important;
+    padding: 10px !important;
+    border: 1px solid #3a3a3e !important;
+    border-radius: 8px !important;
+    background: #1a1a1e !important;
+    color: #e0e0e0 !important;
+    font-size: 13px !important;
+    resize: vertical !important;
+    font-family: inherit;
+    line-height: 1.5;
+}
+
+.sc-textarea:focus {
+    outline: none !important;
+    border-color: #667eea !important;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2) !important;
+}
+
+.sc-textarea::placeholder {
+    color: #666;
+    font-style: italic;
+}
+
+/* 按钮 */
+.sc-btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.sc-btn.primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    justify-content: center;
+}
+
+.sc-btn.primary:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.sc-btn.primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.sc-btn.secondary {
+    background: #3a3a3e;
+    color: #aaa;
+}
+
+.sc-btn.secondary:hover {
+    background: #4a4a4e;
+    color: #fff;
+}
+
+.sc-button-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+/* 选项区域 */
+.sc-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-bottom: 14px;
+}
+
+.sc-option-group {
+    min-width: 0;
+}
+
+.sc-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sc-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.sc-radio-label:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sc-radio-label input[type="radio"] {
+    accent-color: #667eea;
+    width: 14px;
+    height: 14px;
+}
+
+.sc-radio-text {
+    font-weight: 500;
+    color: #ddd;
+}
+
+.sc-radio-desc {
+    font-size: 10px;
+    color: #777;
+}
+
+.sc-select {
+    width: 100%;
+    padding: 6px 10px;
+    border: 1px solid #3a3a3e;
+    border-radius: 6px;
+    background: #1a1a1e;
+    color: #e0e0e0;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.sc-select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* 加载状态 */
+.sc-loading {
+    text-align: center;
+    padding: 20px;
+    color: #888;
+}
+
+.sc-spinner {
+    width: 32px;
+    height: 32px;
+    margin: 0 auto 10px;
+    border: 3px solid #3a3a3e;
+    border-top-color: #667eea;
+    border-radius: 50%;
+    animation: sc-spin 1s linear infinite;
+}
+
+@keyframes sc-spin {
+    to { transform: rotate(360deg); }
+}
+
+.sc-progress {
+    width: 70%;
+    height: 4px;
+    background: #2a2a2e;
+    border-radius: 2px;
+    margin: 10px auto 0;
+    overflow: hidden;
+}
+
+.sc-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+/* 结果区域 */
+.sc-results {
+    margin-top: 14px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.sc-story-card {
+    background: #1a1a1e;
+    border: 1px solid #3a3a3e;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+}
+
+.sc-story-card:hover {
+    border-color: #667eea;
+    box-shadow: 0 2px 12px rgba(102, 126, 234, 0.15);
+}
+
+.sc-story-card.sc-error {
+    border-color: #ff4444;
+    background: rgba(255, 68, 68, 0.1);
+}
+
+.sc-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.sc-card-badge {
+    font-size: 12px;
+    color: #667eea;
+    font-weight: 600;
+    background: rgba(102, 126, 234, 0.15);
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+.sc-card-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.sc-card-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.sc-card-btn.insert {
+    background: #667eea;
+    color: white;
+}
+
+.sc-card-btn.insert:hover {
+    background: #764ba2;
+}
+
+.sc-card-btn.copy {
+    background: #3a3a3e;
+    color: #aaa;
+}
+
+.sc-card-btn.copy:hover {
+    background: #4a4a4e;
+    color: #fff;
+}
+
+.sc-card-btn.continue {
+    background: transparent;
+    border: 1px solid #667eea;
+    color: #667eea;
+}
+
+.sc-card-btn.continue:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.sc-card-content {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #ccc;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.sc-empty {
+    text-align: center;
+    color: #666;
+    padding: 20px;
+    font-style: italic;
+}
+
+/* 滚动条 */
+.sc-results::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sc-results::-webkit-scrollbar-track {
+    background: #2a2a2e;
+    border-radius: 3px;
+}
+
+.sc-results::-webkit-scrollbar-thumb {
+    background: #4a4a4e;
+    border-radius: 3px;
+}
+
+.sc-results::-webkit-scrollbar-thumb:hover {
+    background: #5a5a5e;
 }
