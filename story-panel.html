@@ -1,0 +1,177 @@
+<!-- 故事续写面板 -->
+<div class="story-continuation-settings">
+    <div class="inline-drawer">
+        <div class="inline-drawer-toggle inline-drawer-header">
+            <b>📖 故事续写</b>
+            <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
+        </div>
+        <div class="inline-drawer-content">
+            <!-- 输入区域 -->
+            <div class="sc-input-section">
+                <label>故事背景/开头：</label>
+                <textarea id="sc-story-input" placeholder="输入故事背景或点击下方按钮使用当前聊天..." rows="4" style="width: 95%;"></textarea>
+                <div class="sc-buttons" style="margin-top: 8px;">
+                    <button id="sc-use-chat-btn" class="menu_button secondary">📝 使用当前聊天</button>
+                </div>
+            </div>
+            
+            <hr class="sysHR" />
+            
+            <!-- 选项 -->
+            <div class="sc-options" style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 12px;">
+                <div class="sc-option-group">
+                    <label>续写方向：</label>
+                    <div class="sc-radio-group">
+                        <label><input type="radio" name="continuation-type" value="前传"> 前传</label>
+                        <label><input type="radio" name="continuation-type" value="后续" checked> 后续</label>
+                        <label><input type="radio" name="continuation-type" value="番外"> 番外</label>
+                    </div>
+                </div>
+                
+                <div class="sc-option-group">
+                    <label>生成数量：</label>
+                    <select id="sc-generate-count" style="padding: 4px;">
+                        <option value="2">2 个</option>
+                        <option value="3" selected>3 个</option>
+                        <option value="4">4 个</option>
+                        <option value="5">5 个</option>
+                    </select>
+                </div>
+                
+                <div class="sc-option-group">
+                    <label>调用Agent：</label>
+                    <select id="sc-selected-agent" style="padding: 4px;">
+                        <option value="main">🐋 鲸鱼娘</option>
+                        <option value="taizi">👑 太子</option>
+                        <option value="zhongshu">📜 中书省</option>
+                        <option value="menxia">🔍 门下省</option>
+                        <option value="shangshu">📨 尚书省</option>
+                        <option value="libu">👤 吏部</option>
+                        <option value="hubu">💰 户部</option>
+                        <option value="bingbu">⚔️ 兵部</option>
+                        <option value="gongbu">🔧 工部</option>
+                        <option value="xingbu">⚖️ 刑部</option>
+                        <option value="zaoqiao">🌅 早朝官</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- 生成按钮 -->
+            <button id="sc-generate-btn" class="menu_button primary" style="width: 100%; margin-bottom: 12px;">🚀 开始生成</button>
+            
+            <!-- 加载状态 -->
+            <div id="sc-loading" class="sc-loading" style="display: none; text-align: center; padding: 20px;">
+                <div class="sc-spinner" style="width: 24px; height: 24px; margin: 0 auto 8px; border: 2px solid #3a3a3e; border-top-color: #667eea; border-radius: 50%; animation: sc-spin 1s linear infinite;"></div>
+                <span>AI 正在续写故事...</span>
+            </div>
+            
+            <!-- 结果区域 -->
+            <div id="sc-results" class="sc-results"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+.sc-input-section label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: #aaa;
+}
+.sc-input-section textarea {
+    width: 95%;
+    padding: 8px;
+    border: 1px solid #3a3a3e;
+    border-radius: 6px;
+    background: #1a1a1e;
+    color: #e0e0e0;
+    font-size: 13px;
+    resize: vertical;
+}
+.sc-input-section textarea:focus {
+    outline: none;
+    border-color: #6a6a8a;
+}
+.sc-option-group {
+    min-width: 100px;
+}
+.sc-option-group > label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 11px;
+    color: #888;
+}
+.sc-radio-group {
+    display: flex;
+    gap: 8px;
+}
+.sc-radio-group label {
+    font-size: 12px;
+    cursor: pointer;
+}
+.sc-radio-group input[type="radio"] {
+    accent-color: #667eea;
+}
+.sc-results {
+    margin-top: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+.sc-story-card {
+    background: #1a1a1e;
+    border: 1px solid #3a3a3e;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.sc-story-card:hover {
+    border-color: #667eea;
+}
+.sc-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.sc-card-number {
+    font-size: 12px;
+    color: #667eea;
+    font-weight: 600;
+}
+.sc-card-actions {
+    display: flex;
+    gap: 6px;
+}
+.sc-card-btn {
+    padding: 4px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.2s;
+}
+.sc-card-btn.insert {
+    background: #667eea;
+    color: white;
+}
+.sc-card-btn.insert:hover {
+    background: #764ba2;
+}
+.sc-card-btn.continue {
+    background: #3a3a3e;
+    color: #aaa;
+}
+.sc-card-btn.continue:hover {
+    background: #4a4a4e;
+}
+.sc-card-content {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #ccc;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+@keyframes sc-spin {
+    to { transform: rotate(360deg); }
+}
+</style>
